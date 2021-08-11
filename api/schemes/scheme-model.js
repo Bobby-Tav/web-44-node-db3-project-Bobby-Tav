@@ -18,8 +18,9 @@ async function find() { // EXERCISE A
   */
     const rows = await db('schemes as sc')
     .leftJoin('steps as st', 'st.scheme_id','st.scheme_id')
-    .select('sc.scheme_id','sc.scheme_name').count('st.step_id as number_of_steps')
+    .select('sc.*').count('st.step_id as number_of_steps')
     .groupBy('sc.scheme_id')
+    .orderBy('sc.scheme_id','asc')
    return rows;
 
 }
